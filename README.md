@@ -27,20 +27,16 @@ bitespeed-identity/
 1. Run `npm install`
 2. Set up a local PostgreSQL database and run the table creation script located at `db/init.sql`.
 3. Create a `.env` file in the root directory and add your database connection URI: `DATABASE_URL=postgres://user:password@localhost:5432/bitespeed`.
-4. Run `npm start` to start the server.
+4. Run `node server.js` to start the server.
 
-## Deploying on Render.com
+## 🚀 Live Deployment
 
-1. Create a **Web Service** on Render.com and connect your GitHub repository.
-2. Ensure you have a **PostgreSQL Database** set up on Render.
-3. In the Render Web Service settings, define the following variables:
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-4. Go to the **Environment** tab of the Web Service and add:
-   - `DATABASE_URL`: Add the internal or external database URL provided by your Render PostgreSQL instance.
-   - `NODE_ENV`: Set to `production`
-5. Connect to your Render PostgreSQL database using a tool like pgAdmin, DBeaver, or `psql` and execute the SQL script in `db/init.sql` to initialize the `Contact` table.
-6. Trigger a manual deploy if necessary. The API will be active at your Render service URL (e.g. `https://bitespeed-identity-xxxx.onrender.com/identify`).
+Base URL:
+https://bitespeed-identity-api-jhyb.onrender.com
+
+Endpoint:
+POST https://bitespeed-identity-api-jhyb.onrender.com/identify
+
 
 ## API Endpoints
 
