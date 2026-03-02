@@ -1,6 +1,24 @@
 # Bitespeed Identity Reconciliation API
 
-A REST API for identity reconciliation, built with Node.js, Express, and PostgreSQL.
+A REST API for reconciling customer identities across multiple purchases, built using Node.js, Express, and PostgreSQL.
+
+------------------------------------------------------------
+
+PROBLEM OVERVIEW
+
+Customers may use different email addresses and phone numbers across orders.
+
+This API links contacts that share either:
+- Email
+- Phone Number
+
+Rules:
+- The oldest contact in a linked group becomes the PRIMARY contact.
+- All other contacts become SECONDARY contacts linked via linkedId.
+- Only one primary contact exists per identity group.
+- Duplicate requests do not create duplicate records.
+- All operations run inside a database transaction.
+
 
 ## Project Structure
 ```
@@ -67,3 +85,13 @@ At least one of `email` or `phoneNumber` must be present.
   }
 }
 ```
+
+TECHNICAL HIGHLIGHTS
+
+- Node.js and Express backend
+- PostgreSQL database hosted on Render
+- Recursive CTE (WITH RECURSIVE) to fetch full contact network
+- Ensures only one primary contact per identity group
+- Database transactions (BEGIN / COMMIT) for consistency
+- Indexed email, phoneNumber, and linkedId for performance
+- SSL-enabled connection to cloud PostgreSQL
